@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-let s = 'afdxgchjbkvhjgchfxgdadafeffchvjbknljhgxdfhgkjbmnmslfnijfi';
+
 const encodingText = (str)=> {
     let a = 'a';
     let zero = '0';
@@ -50,11 +50,11 @@ const encodingText = (str)=> {
     let respo = {resp,len}
     return respo;
 }
-let encodedRespo = encodingText(s);
 
-
-router.get('/',(req,res)=>{
-    res.send({encodedRespo})
+router.get('/:encstr',(req,res)=>{
+    const {'encstr':s} = req.params;
+    let encodedRespo = encodingText(s);
+    res.send({encodedRespo});
 })
 
 module.exports = router;
