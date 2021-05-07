@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-
+const bodyParser = require('body-parser');
 
 const encodingText = (str)=> {
     let a = 'a';
@@ -50,9 +50,9 @@ const encodingText = (str)=> {
     let respo = {resp,len}
     return respo;
 }
-
-router.get('/:encstr',(req,res)=>{
-    const {'encstr':s} = req.params;
+const urlencodedParser = bodyParser.urlencoded({extended: false});
+router.post('/',urlencodedParser,(req,res)=>{
+    const {'encstr':s} = req.body;
     let encodedRespo = encodingText(s);
     res.send({encodedRespo});
 })

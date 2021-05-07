@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const bodyParser = require('body-parser');
 
-let str = '3Oaæðò7Ôjô[fàÝÇ2ÓÚÎóÍòôìÜÔæIOØÆÐlÈætØõ÷ÈP×àãXÀäpV[95Îsx'
+const urlencodedParser = bodyParser.urlencoded({extended: false});
+
 const decodeingText = (str) =>{
     str = str.split("").reverse().join("");
     len = str.length;
@@ -9,9 +11,12 @@ const decodeingText = (str) =>{
     return resp;
 }
 
-let decodedRespo = decodeingText(str);
 
-router.get('/',(req,res)=>{
-    res.send({decodedRespo})
+router.post('/',urlencodedParser,(req,res)=>{
+    const {'decstr':str} = req.body;
+    let decodedRespo = decodeingText(str);
+    res.send({decodedRespo});
 })
- module.exports = router;
+
+
+module.exports = router;
