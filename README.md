@@ -15,9 +15,7 @@ Method : POST
 
 Body :
 
-
 It will be  x-www-form-urlencoded
-
 
 
 For encode :
