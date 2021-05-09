@@ -14,7 +14,12 @@ The process can be either of the two
 Method : POST
 
 Body :
+
+
 It will be  x-www-form-urlencoded
+
+
+
 For encode :
 'key':'encstr'
 'value':'string to be encoded'
@@ -24,7 +29,11 @@ For decode :
 
 
 About the response :
+
+
 Type: JSON
+
+
 Encode sample output :
 {
     "encodedRespo": {
