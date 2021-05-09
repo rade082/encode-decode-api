@@ -44,7 +44,6 @@ const decodeingText = (str) =>{
     let newRem2 = [];
     for (var i =0 ;i<remLen-1; i=i+2){
         let k = ((newRem[i]*10)+newRem[i+1])
-        console.log(k);
         newRem2.push(k);
     }
     let flag = false;
