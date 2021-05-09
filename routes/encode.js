@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
 
+const urlencodedParser = bodyParser.urlencoded({extended: false});
+
 const encodingText = (str)=> {
     let a = 'a';
     let zero = '0';
@@ -30,10 +32,10 @@ const encodingText = (str)=> {
     while(val !=0){
         let rem = (val % n);
         val = Math.floor(val/n);
-        if (rem>115){
-            resp += String.fromCharCode(rem+128);
-        }else if(rem>84){
+        if (rem>118){
             resp += String.fromCharCode(rem+129);
+        }else if(rem>85){
+            resp += String.fromCharCode(rem+130);
         }else if(rem>61){
             resp += String.fromCharCode(rem+130);
         }else if(rem>35){
@@ -45,12 +47,13 @@ const encodingText = (str)=> {
             resp += rem.toString();
         }
     }
+
     resp = resp.split("").reverse().join("");
     let len = resp.length
     let respo = {resp,len}
     return respo;
 }
-const urlencodedParser = bodyParser.urlencoded({extended: false});
+
 router.post('/',urlencodedParser,(req,res)=>{
     const {'encstr':s} = req.body;
     let encodedRespo = encodingText(s);
