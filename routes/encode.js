@@ -56,8 +56,15 @@ const encodingText = (str)=> {
 
 router.post('/',urlencodedParser,(req,res)=>{
     const {'encstr':s} = req.body;
-    let encodedRespo = encodingText(s);
-    res.send({encodedRespo});
+    if(!s){
+        res.status(422).send({error: "Please enter data!!"})
+    }
+    try {
+        let encodedRespo = encodingText(s);
+        res.status(200).send({encodedRespo});
+    } catch(error){
+        console.log(error.message);
+    }
 })
 
 module.exports = router;

@@ -65,8 +65,16 @@ const decodeingText = (str) =>{
 
 router.post('/',urlencodedParser,(req,res)=>{
     const {'decstr':str} = req.body;
-    let decodedRespo = decodeingText(str);
-    res.send({decodedRespo});
+    if(!str){
+        res.status(422).send({error:"Please enter a valid status!!"})
+    }
+    try{
+        let decodedRespo = decodeingText(str);
+        res.status(200).send({decodedRespo});
+    } catch(error){
+        console.log(error.message,'The error is:');
+    }
+   
 })
 
 module.exports = router;
